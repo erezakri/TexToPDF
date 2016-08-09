@@ -9,11 +9,6 @@ import java.io.IOException;
 
 /**
  * Created by erez on 06/08/2016.
- *
- *
- *
- *
- * 
  */
 public class createPDF {
     public void createPDF() throws IOException {
@@ -24,13 +19,8 @@ public class createPDF {
         PDFont font = PDType1Font.HELVETICA_BOLD;
 
         PDPageContentStream content = new PDPageContentStream(doc, page);
-        content.beginText();
-        content.setFont( font, 12 );
-        content.moveTextPositionByAmount( 100, 700 );
-        content.drawString("Hello from www.printmyfolders.com");
 
 
-        content.endText();
         content.close();
         doc.save("PDFWithText.pdf");
         try {
