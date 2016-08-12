@@ -3,8 +3,6 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.graphics.PDXObject;
-import org.apache.pdfbox.pdmodel.graphics.image.*;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 //import java.awt.*;
@@ -29,10 +27,21 @@ public class createPDF {
 //        InputStream in = new FileInputStream(new File("simley.png"));
 //        PDXObject img = new PDImageXObject(doc);
 
-        BufferedImage bufferedImage = ImageIO.read(new CalloutBorder());
         PDPageContentStream content = new PDPageContentStream(doc, page);
+        try {
+            BufferedImage awtImage = ImageIO.read(new File("simley.png"));
+            PDImageXObject ximage = PDImageXObject.createFromFile("simley.png",doc);
+            float scale = 1.0f; // alter this value to set the image size
+            content.drawXObject(ximage,100,400,
+                    (ximage.getWidth()*scale),(ximage.getHeight()*scale));
+            content.close();
 
-        content.drawImage((PDImageXObject) img, 100, 700);
+//            document.save(file);
+//            document.close();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
         content.close();
 
