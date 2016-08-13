@@ -29,11 +29,15 @@ public class createPDF {
 //        PDXObject img = new PDImageXObject(doc);
 
         PDPageContentStream content = new PDPageContentStream(doc, page);
-        try {
-            BufferedImage awtImage = ImageIO.read(new File("simley.png"));
-            PDImageXObject ximage = PDImageXObject.createFromFile("simley.png",doc);
+        /*creating the jFrame of LargePanelToImageMCVE*/
+        LargePanelToImageMCVE mypanle = new LargePanelToImageMCVE();
 
-            float scale = 1.0f; // alter this value to set the image size
+        /*adding the frame (jpeg file) to the PDF file*/
+        try {
+//            BufferedImage awtImage = ImageIO.read(new File("simley.png"));
+            PDImageXObject ximage = PDImageXObject.createFromFile("jmemPractice.jpeg",doc);
+
+            float scale = 0.5f; // alter this value to set the image size
             content.drawXObject(ximage,100,400,
                     (ximage.getWidth()*scale),(ximage.getHeight()*scale));
             content.setStrokingColor(Color.red);
