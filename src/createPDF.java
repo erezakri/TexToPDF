@@ -7,6 +7,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 //import java.awt.*;
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,9 +32,13 @@ public class createPDF {
         try {
             BufferedImage awtImage = ImageIO.read(new File("simley.png"));
             PDImageXObject ximage = PDImageXObject.createFromFile("simley.png",doc);
+
             float scale = 1.0f; // alter this value to set the image size
             content.drawXObject(ximage,100,400,
                     (ximage.getWidth()*scale),(ximage.getHeight()*scale));
+            content.setStrokingColor(Color.red);
+            content.addRect(100-3, 400-3, ximage.getWidth()*scale+6, ximage.getHeight()*scale+6);
+            content.closeAndStroke();
             content.close();
 
 //            document.save(file);
