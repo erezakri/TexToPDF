@@ -4,7 +4,7 @@
       <root url="file://$PROJECT_DIR$" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/Desktop/pdfbox-app-2.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pdfbox-app-2.0.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

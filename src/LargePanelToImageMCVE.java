@@ -32,14 +32,15 @@ public class LargePanelToImageMCVE {
 
     public LargePanelToImageMCVE() {
         LargeImagePanel panel = new LargeImagePanel();
-        JFrame frame = new JFrame();
-        frame.add(new JScrollPane(panel));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setVisible(true);
+//        JFrame frame = new JFrame();
+//        frame.add(new JScrollPane(panel));
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        frame.setVisible(true);
+
+        panel.setPreferredSize(new Dimension(640 ,480));
 
         final java.awt.Image image = getImageFromPanel(panel);
-
         /* This was just a text panel to make sure th`e full panel was
          * drawn to the panel.
          */
@@ -51,10 +52,14 @@ public class LargePanelToImageMCVE {
             }
 
             @Override
+//            public Dimension getPreferredSize() {
+//                return new Dimension(300, 300);
+//            }
             public Dimension getPreferredSize() {
                 return new Dimension(300, 300);
             }
         };
+        newPanel.setSize(new Dimension(300,300));
 
 //        /* Print Image to PDF */
 //        String fileName = "D://newfile.pdf";
@@ -63,15 +68,15 @@ public class LargePanelToImageMCVE {
         /* This was just a test to show the newPanel drew the entire
          * original panel (scaled)
          */
-        JOptionPane.showMessageDialog(null, newPanel);
+//        JOptionPane.showMessageDialog(null, newPanel);
 
 
         /*save the jframe to a file*/
         try
         {
-            BufferedImage image1 = new BufferedImage(frame.getWidth(), frame.getHeight(), BufferedImage.TYPE_INT_RGB);
+            BufferedImage image1 = new BufferedImage(newPanel.getWidth(), newPanel.getHeight(), BufferedImage.TYPE_INT_RGB);
             Graphics2D graphics2D = image1.createGraphics();
-            frame.paint(graphics2D);
+            newPanel.paint(graphics2D);
             ImageIO.write(image1,"jpeg", new File("jmemPractice.jpeg"));
         }
         catch(Exception exception)
@@ -103,8 +108,8 @@ public class LargePanelToImageMCVE {
 
     public static java.awt.Image getImageFromPanel(Component component) {
 
-        BufferedImage image = new BufferedImage(component.getWidth(),
-                component.getHeight(), BufferedImage.TYPE_INT_RGB);
+        //BufferedImage image = new BufferedImage(component.getWidth(), component.getHeight(), BufferedImage.TYPE_INT_RGB);
+        BufferedImage image = new BufferedImage(640, 480, BufferedImage.TYPE_INT_RGB);
         component.paint(image.getGraphics());
         return image;
     }

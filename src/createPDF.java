@@ -35,7 +35,8 @@ public class createPDF {
         /*adding the frame (jpeg file) to the PDF file*/
         try {
 //            BufferedImage awtImage = ImageIO.read(new File("simley.png"));
-            PDImageXObject ximage = PDImageXObject.createFromFile("jmemPractice.jpeg",doc);
+            PDImageXObject ximage = PDImageXObject.createFromFile("simley.png",doc);
+//            PDImageXObject ximage = PDImageXObject.createFromFile("jmemPractice.jpeg",doc);
 
             float scale = 0.5f; // alter this value to set the image size
             content.drawXObject(ximage,100,400,
